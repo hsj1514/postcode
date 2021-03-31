@@ -44,20 +44,21 @@
             function execDaumPostcode() {
                 new daum.Postcode({
                     oncomplete: function(data) {
-                    var jibunAddress = ""
+                        console.log(data);
+                        var jibunAddress = ""
 
-                    if (data.jibunAddress == "") {
-                        jibunAddress = data.autoJibunAddress
-                    } else if (data.autoJibunAddress == "") {
-                        jibunAddress = data.jibunAddress
-                    }
+                        if (data.jibunAddress == "") {
+                            jibunAddress = data.autoJibunAddress
+                        } else if (data.autoJibunAddress == "") {
+                            jibunAddress = data.jibunAddress
+                        }
 
-                    var postData = {
-                        roadAddress : data.roadAddress,
-                        jibunAddress : jibunAddress,
-                        zonecode : data.zonecode
-                    };
-                    window.postMessageToiOS(postData);
+                        var postData = {
+                            roadAddress : data.roadAddress,
+                            jibunAddress : jibunAddress,
+                            zonecode : data.zonecode
+                        };
+                        window.postMessageToiOS(postData);
                     },
                     width : '100%',
                     height : '100%'
